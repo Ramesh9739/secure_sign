@@ -11,6 +11,8 @@ before_script:
   - openssl aes-256-cbc -K $encrypted_51f11bfbfc28_key -iv $encrypted_51f11bfbfc28_iv -in cosign.key.enc -out cosign.key -d -pass pass:$PRIVATE_KEY_PASSWORD
   # Make sure the private key has the correct permissions
   - chmod 600 cosign.key
+  # Export environment variables if needed
+  - export COSIGN_PASSWORD=$PRIVATE_KEY_PASSWORD
 
 script:
   # Run your cosign commands here
