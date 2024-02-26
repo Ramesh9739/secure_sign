@@ -9,9 +9,10 @@ env:
 
 before_script: 
   - travis_key PEM cosign.key  # cosign requires the key to be in a file
-  - export COSIGN_PASSWORD=$PRIVATE_KEY_PASSWORD
+  
 
 script:
   - cosign sign --key cosign.pem arthanaharidas/python-hello-world
 before_install:
+  - export COSIGN_PASSWORD=$PRIVATE_KEY_PASSWORD
   - openssl aes-256-cbc -K $encrypted_d0fccec9559d_key -iv $encrypted_d0fccec9559d_iv -in cosign.pem.enc -out cosign.pem -d
