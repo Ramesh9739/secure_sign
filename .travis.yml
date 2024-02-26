@@ -16,5 +16,5 @@ script:
   
 before_script:
   - openssl aes-256-cbc -K $encrypted_51f11bfbfc28_key -iv $encrypted_51f11bfbfc28_iv -in cosign.pem.enc -out cosign.pem -d
-  - export COSIGN_PASSWORD=Pankaj@1992$
+  - export COSIGN_PASSWORD=$PRIVATE_KEY_PASSWORD
 
