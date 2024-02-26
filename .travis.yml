@@ -4,7 +4,7 @@ group: edge
 language: python
 
 env:
-  - PRIVATE_KEY_PASSWORD=your_passphrase_here
+  - PRIVATE_KEY_PASSWORD=Pankaj@1992$
 
 before_script:
   # Decrypt the private key if it's encrypted
