@@ -2,15 +2,16 @@ os: linux
 dist: focal
 group: edge
 language: python
-keys:
-  - PEM
+
 env:
-  - PRIVATE_KEY_PASSWORD=Pankaj@1992$
-  
-before_script: 
-  - travis_key PEM cosign.key  # cosign requires the key to be in a file
-  - openssl aes-256-cbc -K $encrypted_51f11bfbfc28_key -iv $encrypted_51f11bfbfc28_iv -in cosign.pem.enc -out cosign.pem -d
-  - export COSIGN_PASSWORD=$PRIVATE_KEY_PASSWORD
+  - PRIVATE_KEY_PASSWORD=your_passphrase_here
+
+before_script:
+  # Decrypt the private key if it's encrypted
+  - openssl aes-256-cbc -K $encrypted_51f11bfbfc28_key -iv $encrypted_51f11bfbfc28_iv -in cosign.key.enc -out cosign.key -d -pass pass:$PRIVATE_KEY_PASSWORD
+  # Make sure the private key has the correct permissions
+  - chmod 600 cosign.key
 
 script:
-  - cosign sign --key cosign.pem arthanaharidas/python-hello-world
+  # Run your cosign commands here
+  - cosign sign --key cosign.key arthanaharidas/python-hello-world
